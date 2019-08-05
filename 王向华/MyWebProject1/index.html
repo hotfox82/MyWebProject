@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,
+     minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>我的第一个测试网页</title>
+    <!--使用bootstrap框架-->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css"/>
+    <!--使用jquery框架-->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <!--使用bootstrap中的js-->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!--顶部固定-->
+<div class="navbar-fixed-top navbar navbar-inverse"
+     style="font-size:30px;color:white;padding-left: 100px">高考志愿填报系统</div>
+<br/><br/><br/><br/><br/>
+<!--登录部分的内容全部使用的BootStrap框架-->
+   <div class="container" style="width: 40%;">
+       <div><!--<h3 class="text-center">高考志愿填报系统</h3>-->
+           <ul class="nav nav-tabs">
+               <li><a href="#login" data-toggle="tab" class="active">登录</a> </li>
+               <li><a href="#register" data-toggle="tab">注册</a> </li>
+           </ul>
+           
+           <div class="tab-content">
+               <div id="login"  class="tab-pane fade in active">
+                  <div class="panel panel-primary">
+                      <div class="panel-heading">
+                          <h3 class="panel-title"><label class="glyphicon glyphicon-user">&nbsp;</label>用户登录</h3>
+                      </div>
+                      <div class="panel-body">
+                          <div class="input-group">
+                              <label class="input-group-addon">用户名</label>
+                              <input type="text" placeholder="请输入用户名" class="form-control">
+                          </div>
+                          <br/>
+                          <div class="input-group">
+                              <label class="input-group-addon">密&nbsp;&nbsp;码</label>
+                              <input type="password" placeholder="请输入用户密码" class="form-control">
+                          </div>
+                          <br/>
+                          <div class="input-group">
+                              <label class="input-group-addon">验证码</label>
+                              <input type="text" placeholder="请输入验证码" class="form-control">
+                          </div>
+                          <br/>
+                          <div align="right"><a href="">忘记密码</a></div>
+                          <div class="text-center">
+                              <a href="" class="btn btn-primary"><span class="glyphicon glyphicon-log-in">&nbsp;登录</span></a>
+                              &nbsp;&nbsp;&nbsp;&nbsp;
+                              <a href="" class="btn btn-default"><span class="glyphicon glyphicon-log-out">&nbsp;取消</span></a>
+                          </div>
+                          <br/>
+                      </div>
+                  </div>
+               </div>
+               <!--以下使用layui框架-->
+               <div id="register" class="tab-pane fade in">
+                   <div class="panel panel-primary">
+                       <div class="panel-heading">
+                           <h3 class="panel-title"><label class="glyphicon glyphicon-user">&nbsp;</label>用户注册</h3>
+                       </div>
+                       <div class="panel-body">
+                           <div class="input-group">
+                               <label class="input-group-addon">用户名</label>
+                               <input type="text" placeholder="请输入用户名" class="form-control">
+                           </div>
+                           <br/>
+                           <div class="input-group">
+                               <label class="input-group-addon">密&nbsp;&nbsp;码</label>
+                               <input type="password" placeholder="请输入用户密码" class="form-control">
+                           </div>
+                           <br/>
+                           <div class="input-group">
+                               <label class="input-group-addon">二次密码</label>
+                               <input type="password" placeholder="请输入二次密码" class="form-control">
+                           </div>
+                           <br/>
+                           <div class="input-group">
+                               <label class="input-group-addon">邮&nbsp;&nbsp;&nbsp;箱</label>
+                               <input type="password" placeholder="请输入用户邮箱" class="form-control">
+                           </div>
+                           <br/>
+                           <div class="input-group">
+                               <label class="input-group-addon">验证码</label>
+                               <input type="text" placeholder="请输入验证码" class="form-control">
+                           </div>
+                           <br/>
+                           <div class="text-center">
+                               <a href="" class="btn btn-primary"><span class="glyphicon glyphicon-plus">&nbsp;</span>注册</a>
+                               &nbsp;&nbsp;&nbsp;&nbsp;
+                               <a href="" class="btn btn-default"><span class="glyphicon glyphicon-remove">&nbsp;取消</span></a>
+                           </div>
+                           <br/>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+    <div class="navbar-fixed-bottom" align="center">
+        &copy:2019-2010 天津职业大学 Copy Right
+    </div>
+
+</body>
+</html>
