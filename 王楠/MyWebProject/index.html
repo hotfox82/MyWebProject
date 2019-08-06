@@ -15,8 +15,62 @@
     <script type="text/javascript">
         /*jquery启动函数*/
         $(function () {
-            createCode(4)
-        })
+            createCode(4);
+        });
+        function validateLogin() {
+            // layer.msg("hello");
+            var uname = $("#uname").val().trim();
+            if(uname.length == 0){
+                layer.tips("用户名不能为空","#uname",{tips:[2,"#ff0000"]});
+                return;
+            }
+            var upwd = document.getElementById("upwd").value;
+            //正则表达式
+            var reg=/^\S{6,20}$/
+            if(!reg.test(upwd)){
+                layer.tips("密码有误！","#upwd",{tips:[2,"#ff0000"]});
+            }
+            //邮箱地址正则表达式验证
+            // var cem = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
+            // if(!cem.test(email)){
+            //     layer.tips()
+            // }
+
+            var vcode = $("#validateCode").val();
+            if(vcode.trim().toLowerCase() != code.toLowerCase()){
+                layer.tips("验证码有误！","#validateCode",{tips:[2,"#ff0000"]});
+            }
+
+            //ajax
+            $.ajax({
+                url:"data/login.json",
+                // data:{
+                //     "uname":uname,
+                //     "upwd":upwd
+                // },
+                data:$("#login_form").serialize(),
+                method:"post",
+                dataType:"json",
+                success: function(result){
+                    // var str = JSON.stringify(result);
+                    // var obj = JSON.parse(str);
+                    // alert(result.return())
+                    if(result.result == "false"){
+                        layer.msg("登录失败，请重试！",{icon:5})
+                        return;
+                    }else{
+                        sessionStorage.setItem("uname",uname);
+                        window.location.href = "admin.html"
+                    }
+                },
+                error:function(){
+                    layer.alert("请求服务器失败，请重试！",{icon:5});
+                }
+            })
+        }
+        function login_cancel() {
+
+        }
     </script>
 </head>
 <body>
@@ -38,28 +92,33 @@
                         <h3 class="panel-title"><label class="glyphicon glyphicon-apple"></label> 用户登录</h3>
                     </div>
                     <div class="panel-body">
-                        <div class="input-group">
-                            <label class="input-group-addon">用户名</label>
-                            <input type="text" placeholder="请输入用户名" class="form-control">
-                        </div>
-                        <br>
-                        <div class="input-group">
-                            <label class="input-group-addon">密&nbsp;&nbsp;&nbsp;码</label>
-                            <input type="password" placeholder="请输入密码" class="form-control">
-                        </div>
-                        <br>
-                        <div class="input-group">
-                            <label class="input-group-addon">验证码</label>
-                            <input type="text" placeholder="请输入验证码" class="form-control " style="display: inline;width:60%">
-                            <a href="javascript:void(0)" onclick="createCode(4)"><span id="vcode"></span></a>
-                        </div>
-                        <br>
-                        <div align="right"><a href=""> 忘记密码</a></div>
-                        <br>
-                        <div class="text-center">
-                            <a href="" class="btn btn-primary"><span class="glyphicon glyphicon-log-in"></span> 登录</a>
-                            <a href="" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> 取消</a>
-                        </div>
+                        <form id="login_form">
+                            <div class="input-group">
+                                <label class="input-group-addon">用户名</label>
+                                <input id="uname" name="uname" type="text" placeholder="请输入用户名" class="form-control">
+                            </div>
+                            <br>
+                            <div class="input-group">
+                                <label class="input-group-addon">密&nbsp;&nbsp;&nbsp;码</label>
+                                <input id="upwd" name="upwd" type="password" placeholder="请输入密码" class="form-control">
+                            </div>
+                            <br>
+                            <div class="input-group">
+                                <label class="input-group-addon">验证码</label>
+                                <input id="validateCode" name="validateCode" type="text" placeholder="请输入验证码"
+                                       class="form-control " style="display: inline;width:60%">
+                                <a href="javascript:void(0)" onclick="createCode(4)"><span id="vcode"></span></a>
+                            </div>
+                            <br>
+                            <!--<div align="right"><a href=""> 忘记密码</a></div>-->
+                            <br>
+                            <div class="text-center">
+                                <a href="javascript:validateLogin()" class="btn btn-primary"><span
+                                        class="glyphicon glyphicon-log-in"></span> 登录</a>
+                                <a href="" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span>
+                                    取消</a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -86,7 +145,7 @@
                         <br>
                         <div class="input-group">
                             <label class="input-group-addon">邮箱</label>
-                            <input type="text" placeholder="请输入邮箱" class="form-control ">
+                            <input id="email" type="email" placeholder="请输入邮箱" class="form-control ">
                         </div>
                         <br>
                         <div class="text-center">
